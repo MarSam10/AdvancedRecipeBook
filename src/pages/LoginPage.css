@@ -1,0 +1,9 @@
+
+.p-login > .main {
+    width: 500px;
+    margin: 40px auto;
+}
+
+.p-login button {
+    font-weight: bold;
+}
