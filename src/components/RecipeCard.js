@@ -11,11 +11,11 @@ class RecipeCard extends React.Component {
         const { recipe } = this.props;
         return (
             <Card className="recipe">
-                <Card.Img variant="top" src={recipe.img} />
+                <Card.Img variant="top" src={recipe[3]} />
                 <Card.Body>
-                    <Card.Title>{recipe.name}</Card.Title>
+                    <Card.Title>{recipe[1]}</Card.Title>
                     <Card.Text>
-                        {recipe.desc}
+                        {recipe[2]}
                     </Card.Text>
                 </Card.Body>
             </Card>

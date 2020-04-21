@@ -3,11 +3,10 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage';
 import RecipesPage from './pages/RecipesPage';
-import jsonUsers from './data/users'
-import jsonRecipes from './data/recipes'
+import jsonUsers from './data/users.json'
+import jsonRecipes from './data/recipes.json'
 import AddRecipe from "./pages/AddRecipe";
 import LoginPage from "./pages/LoginPage";
-
 
 class App extends React.Component {
 
@@ -22,9 +21,10 @@ class App extends React.Component {
      //     "email": "marsam@ua.com",
      //     "pwd": "123"
      // },
-      allUsers: jsonUsers,
-      allRecipes: jsonRecipes,
-      //activeUserRecipes: []
+      allUsers: jsonUsers.map(item =>
+                [this.id = item.id, this.fname = item.fname ,this.lname = item.lname,this.email = item.email,this.pdw= item.pwd]),
+      allRecipes: jsonRecipes.map(item =>
+                [item.id, item.name ,item.desc  , item.img, item.difficulty, item.userId]),
       activeUserRecipes: jsonRecipes.filter(recipe => recipe.userId === 1)
     }
       this.handleLogout = this.handleLogout.bind(this);
@@ -40,7 +40,7 @@ class App extends React.Component {
 
     handleLogin(activeUser) {
 
-        const activeUserRecipes = this.state.allRecipes.filter(recipe => recipe.userId === activeUser.id)
+        const activeUserRecipes = this.state.allRecipes.filter(recipe => recipe[4] === activeUser[0])
 
         this.setState({activeUser, activeUserRecipes});
     }
@@ -69,7 +69,7 @@ class App extends React.Component {
               <HomePage activeUser={activeUser} handleLogout={this.handleLogout}/>
           </Route>
           <Route path="/login">
-              <LoginPage users={allUsers} handleLogin={this.handleLogin}/>
+              <LoginPage users={this.state.allUsers} handleLogin={this.handleLogin}/>
           </Route>
         <Route path="/recipes">
           <RecipesPage recipes={activeUserRecipes} activeUser={activeUser} handleLogout={this.handleLogout} addRecipe={this.addRecipe}/>

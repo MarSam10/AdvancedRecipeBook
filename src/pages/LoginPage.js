@@ -13,7 +13,6 @@ class LoginPage extends Component {
             showInvalidLoginError: false,
             redirectToRecipesPage: false
         }
-
         this.handleInputChange = this.handleInputChange.bind(this);
         this.login = this.login.bind(this);
     }
@@ -31,10 +30,18 @@ class LoginPage extends Component {
     login() {
         const { allUsers, handleLogin } = this.props;
         const { email, pwd } = this.state;
+        let isUser = false;
+        let newActiveUser;
+        for (var i = 0; i < this.props.users.length; i++) {
+            if(this.props.users[i][3]==this.state.email && this.props.users[i][4]==this.state.pwd){
+                isUser = true;
+                newActiveUser = this.props.users[i];
+                break;
+            }
+        }
+        
 
-        const newActiveUser = true;
-
-        if (newActiveUser) {
+        if (isUser) {
             // 1) Updating App component on the new active user
             handleLogin(newActiveUser);
 

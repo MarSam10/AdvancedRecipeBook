@@ -16,7 +16,6 @@ class RecipesPage extends React.Component {
                 URL: ""
             },
         }
-
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.createRecipe = this.createRecipe.bind(this);
@@ -63,9 +62,9 @@ class RecipesPage extends React.Component {
 
         // send email...
         var template_params = {
-            "user_email": activeUser.email,
-            "recipe_name": newRecipe.name,
-            "user_name": activeUser.fname,
+            "user_email": activeUser[3],
+            "recipe_name": newRecipe[1],
+            "user_name": activeUser[1],
             "recipe_url": "no url for now"
          }
 
@@ -82,7 +81,6 @@ class RecipesPage extends React.Component {
         const { activeUser, recipes } = this.props;
         const { showModal, newRecipeImg } = this.state;
         //const showModal = this.state.showModal;
-
         if (!activeUser) {
             return <Redirect to="/" />
         }
@@ -94,7 +92,7 @@ class RecipesPage extends React.Component {
                 <RecipeNavbar activeUser={activeUser}/>
                 <Container>
                     <div className="recipes-header">
-                        <h1>{activeUser.fname}'s Recipes</h1>
+                        <h1>{activeUser[1]}'s Recipes</h1>
                         <Button variant="primary" href="#/add" /*onClick={this.openModal}*/>New Recipe</Button>
                     </div>
                     <Row>

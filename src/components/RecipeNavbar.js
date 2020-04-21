@@ -13,10 +13,9 @@ class RecipeNavbar extends React.Component {
     }
 
     logout() {
-        this.props.handleLogout();
-
+//         this.props.handleLogout();
         if (window.location.hash !== "#/") {
-            this.setState({redirectToHome: true})
+            this.setState({redirectToHome: true});
         }
     }
 
@@ -30,7 +29,7 @@ class RecipeNavbar extends React.Component {
 
         const signupLink = !activeUser ? <Nav.Link href="#/signup">Signup</Nav.Link> : null;
         const loginLink = !activeUser ? <Nav.Link href="#/login">Login</Nav.Link> : null;
-        const logoutLink = activeUser ? <Nav.Link onClick={this.logout}>Logout</Nav.Link> : null;
+        const logoutLink = activeUser ? <Nav.Link onClick={this.logout} dologout{true}>Logout</Nav.Link> : null;
 
 
         return (
